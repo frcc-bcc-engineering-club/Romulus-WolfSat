@@ -15,7 +15,7 @@ class PIDControlSystem{
       */
 
    
-    PIDControlSystem(int readPin, int outputPin, double Proportional, double Integral, double D);
+    PIDControlSystem(double Proportional, double Integral, double Deveritive);
     /*
       * create a controller system with it fully initalzied and setup the controller to be ready for use.
       * readPin is the analogPin that will 
@@ -40,20 +40,23 @@ class PIDControlSystem{
 
 
 
-   int run();
+   double run(double current, double target);
    /*
       *The Run function will run a single cycle of the PID and return the output from the  
       */
 
    private:
-   int P,I,D;
+   int P,I,D, intergralLimit, lastP;
    /*
       * These are the values for the PID control system
       */
+
+    
 
    long lastRun;
    /*
       * The last run of the PID control system
       */
+
       
 };
