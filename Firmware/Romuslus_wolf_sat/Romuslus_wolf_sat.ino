@@ -17,6 +17,7 @@ void setup()
 
 void loop() 
 {
+  int ErrorCounter=0;
     if(!SD.begin(BUILTIN_SDCARD));
     {
       Serial.println("SD failed in loop...");
@@ -27,11 +28,13 @@ void loop()
     i++;
     if(!dataFile)
     {
-      while(!dataFile)
+      while(!dataFile&&ErrorCounter<5)
       {
+        ErrorCounter++;
         Serial.println("Trying to open the file...");
         dataFile = SD.open("Sensor1.txt");
       }
+      if(!dataFile)return;// after 5 tries give up and reset mainloop.
     }
     else
     {

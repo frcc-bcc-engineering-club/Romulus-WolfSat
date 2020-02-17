@@ -5,9 +5,9 @@
 
 PIDControlSystem::PIDControlSystem(){
 
-P=10;
-I=0.1;
-D=1;
+P=10;//setting poroptional
+I=0.1;//setting intergral
+D=1;//setting derivitive
 
 }
 
