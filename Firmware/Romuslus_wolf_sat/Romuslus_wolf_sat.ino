@@ -4,42 +4,26 @@
 #include <SD.h>
 #include "DataLog.h"
 
+bool DEBUG = false;
+double testSet[] = {1.0, 1.137, 3.14159};
+
+DataLog logger;
+
 
 int i;
 void setup() 
 {
-    while(!SD.begin(BUILTIN_SDCARD))
-    {
-      Serial.println("fixing SD");
-    }
+//    while(!SD.begin(BUILTIN_SDCARD))
+//    {
+//      Serial.println("fixing SD");
+//    } Spun out into DataLog.InitializeSD()
+    DEBUG = true;
+    logger = DataLog(5, DEBUG);
     Serial.begin(115200);// For system Diagnostics
 }
 
 void loop() 
 {
-  int ErrorCounter=0;
-    if(!SD.begin(BUILTIN_SDCARD));
-    {
-      Serial.println("SD failed in loop...");
-      setup();
-      
-    }
-    File dataFile = SD.open("Sensor1.txt", FILE_WRITE);
-    i++;
-    if(!dataFile)
-    {
-      while(!dataFile&&ErrorCounter<5)
-      {
-        ErrorCounter++;
-        Serial.println("Trying to open the file...");
-        dataFile = SD.open("Sensor1.txt");
-      }
-      if(!dataFile)return;// after 5 tries give up and reset mainloop.
-    }
-    else
-    {
-      Serial.println("Writing Data... " + (String)i);
-      dataFile.println("the count is " + (String)i);
-      dataFile.close(); 
-    }
+  Serial.println("looping...");
+  logger.WriteSet("TestData.txt", testSet, 3);
 }
