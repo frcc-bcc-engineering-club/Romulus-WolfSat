@@ -15,7 +15,7 @@ DataLog::DataLog(int in_errorLim, bool in_debugging)
 }
 
 
-void DataLog::WriteSet(char in_fileName[], double in_set[], int in_setLim)
+void DataLog::WriteSet(char in_fileName[], double in_set[], int in_setLim, TimeStamper in_tStamp)
 {
   if(!SD.begin(BUILTIN_SDCARD))
   {
@@ -31,16 +31,17 @@ void DataLog::WriteSet(char in_fileName[], double in_set[], int in_setLim)
   }
   else
   {
-    WriteDoubleSet(in_set, toWriteTo, in_setLim);
-    if(debugging)
-      Serial.println("Data written...");
+    WriteDoubleSet(in_set, toWriteTo, in_setLim, in_tStamp);
+//    if(debugging)
+//      Serial.println("Data written...");
     
   }
 }
 
-void DataLog::WriteDoubleSet(double in_set[], File in_file, int in_setLim)
+
+void DataLog::WriteDoubleSet(double in_set[], File in_file, int in_setLim, TimeStamper in_tStamp)
 {
-  String toWrite = DoubleSetToString(in_set, in_setLim);
+  String toWrite = DoubleSetToString(in_set, in_setLim, in_tStamp);
   if(debugging)
     Serial.println("Writing data: " + toWrite);
   if(in_file)
@@ -53,10 +54,10 @@ void DataLog::WriteDoubleSet(double in_set[], File in_file, int in_setLim)
 }
 
 
-String DataLog::DoubleSetToString(double in_set[], int in_setLim)
+String DataLog::DoubleSetToString(double in_set[], int in_setLim, TimeStamper in_tStamp)
 {
   int pos = 0;
-  String toRet = "";
+  String toRet = in_tStamp.Get_Stamp();
   while(pos < in_setLim)
   {
     toRet += (String) in_set[pos];

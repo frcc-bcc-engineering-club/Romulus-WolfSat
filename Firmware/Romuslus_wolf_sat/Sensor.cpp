@@ -23,7 +23,3 @@ int Sensor::GetSize()
 {
   return dataSize; 
 }
-
-//    double* GetData();
-//    int GetSize();
-//    virtual void FillData() = 0;
