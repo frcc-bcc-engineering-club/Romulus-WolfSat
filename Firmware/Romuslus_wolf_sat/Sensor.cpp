@@ -5,6 +5,11 @@ Sensor::Sensor()
   
 }
 
+Sensor::~Sensor()
+{
+  
+}
+
 
 Sensor::Sensor(int in_dataSize)
 {

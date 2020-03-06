@@ -4,12 +4,15 @@
 #include <SD.h>
 #include "DataLog.h"
 #include "TimeStamper.h"
+#include "VOCSensor.h"
 
 bool DEBUG = false;
 double testSet[] = {1.0, 1.137, 3.14159};
+double* vocSensorSet;
 
 DataLog logger;
 TimeStamper tStamp;
+VOCSensor vocSensor;
 
 
 int i;
@@ -29,9 +32,12 @@ void setup()
 
 void loop() 
 {
+  vocSensor.FillData();
+  vocSensorSet = vocSensor.GetData();
+  logger.WriteSet("VOCData.txt", vocSensorSet, vocSensor.GetSize(), tStamp);
   digitalWrite(LED_BUILTIN, HIGH);
 //  Serial.println("looping...");
-  logger.WriteSet("TestData.txt", testSet, 3, tStamp);
+//  logger.WriteSet("TestData.txt", testSet, 3, tStamp);
   digitalWrite(LED_BUILTIN, LOW);
   delay(100);
 }
