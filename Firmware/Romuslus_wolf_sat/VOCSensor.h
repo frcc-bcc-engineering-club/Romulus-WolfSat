@@ -16,8 +16,7 @@ class VOCSensor : public Sensor
       Wire.begin();
       if(ccs.begin() == false)
       {
-        Serial.print("CCS811 error. Please check wiring. Freezing...");
-        while(true);
+        Serial.print("CCS811 error. Please check wiring.");
       }
     }
     void FillData() override;

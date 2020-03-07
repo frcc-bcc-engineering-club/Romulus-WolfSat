@@ -1,7 +1,5 @@
 #include "PIDController.h"
 
-#include <SPI.h>
-#include <SD.h>
 #include "DataLog.h"
 #include "TimeStamper.h"
 #include "VOCSensor.h"
@@ -19,11 +17,10 @@ TimeStamper tStamp;
 VOCSensor vocSensor;
 ParticulateSensor partiSensor;
 
-int i;
 void setup() 
 {
   Serial.begin(115200);// For system Diagnostics
-
+  Serial.println("Setting up Romulus");
   pinMode(LED_BUILTIN, OUTPUT);
   DEBUG = true;
   logger = DataLog(5, DEBUG);
@@ -34,8 +31,9 @@ void loop()
 {
   digitalWrite(LED_BUILTIN, HIGH);
   vocFunk();
+  partiFunk();
   digitalWrite(LED_BUILTIN, LOW);
-  delay(100);
+  delay(1000);
 }
 
 void vocFunk()
@@ -49,6 +47,6 @@ void partiFunk()
 {
   partiSensor.FillData();
   partiSet = partiSensor.GetData();
-  logger.WriteSet("ParticulateData.txt", partiSet, partiSensor.GetSize(), tStamp);
+  logger.WriteSet("SPSData.txt", partiSet, partiSensor.GetSize(), tStamp);
 }
 
