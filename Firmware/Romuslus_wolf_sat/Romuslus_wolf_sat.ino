@@ -4,6 +4,7 @@
 #include "TimeStamper.h"
 #include "VOCSensor.h"
 #include "ParticulateSensor.h"
+#include "OzoneSensor.h"
 
 bool DEBUG = false;
 double testSet[] = {1.0, 1.137, 3.14159};
@@ -16,6 +17,7 @@ DataLog logger;
 TimeStamper tStamp;
 VOCSensor vocSensor;
 ParticulateSensor partiSensor;
+OzoneSensor o3SensorOne;
 
 void setup() 
 {
@@ -48,5 +50,12 @@ void partiFunk()
   partiSensor.FillData();
   partiSet = partiSensor.GetData();
   logger.WriteSet("SPSData.txt", partiSet, partiSensor.GetSize(), tStamp);
+}
+
+void ozFunkOne()
+{
+  o3SensorOne.FillData();
+  ozoneOneSensorSet = o3SensorOne.GetData();
+  logger.WriteSet("O3OneData.txt", ozoneOneSensorSet, o3SensorOne.GetSize(), tStamp);
 }
 
