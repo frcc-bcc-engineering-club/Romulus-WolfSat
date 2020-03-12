@@ -32,11 +32,12 @@ class PIDControlSystem{
       * set Integral multiplier. over time, adds the proportional over time to the output. 
       */
 
-      void setDerivative(double Derivative);
+    void setDerivative(double Derivative);
       /*
         * set Derivative multiplier. This is to respond to the sudden change and counter it with 
         * rapid output change.
         */
+    void setIntergralLimit(int limit);
 
 
 

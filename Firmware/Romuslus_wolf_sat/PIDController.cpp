@@ -30,6 +30,11 @@ void PIDControlSystem::setDerivative(double Derivative){
 D=Derivative;
   
 }
+void PIDControlSystem::setIntergralLimit(int limit){
+  intergralLimit = limit;
+}
+
+
 
 
 double PIDControlSystem::run(double current, double target){
