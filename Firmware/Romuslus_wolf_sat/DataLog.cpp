@@ -57,7 +57,7 @@ void DataLog::WriteDoubleSet(double in_set[], File in_file, int in_setLim, TimeS
 String DataLog::DoubleSetToString(double in_set[], int in_setLim, TimeStamper in_tStamp)
 {
   int pos = 0;
-  String toRet = in_tStamp.Get_Stamp();
+  String toRet = in_tStamp.Get_Stamp() + ", ";
   while(pos < in_setLim)
   {
     toRet += (String) in_set[pos];

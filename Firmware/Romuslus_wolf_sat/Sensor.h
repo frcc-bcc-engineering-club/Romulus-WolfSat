@@ -1,3 +1,5 @@
+#ifndef SENSOR_H
+#define SENSOR_H
 class Sensor
 {
   public:
@@ -7,9 +9,12 @@ class Sensor
     double* GetData();
     int GetSize();
     virtual void FillData() = 0;
+  protected:
+    double* dataSet;
   private:
     int dataSize;
-    double* dataSet;
+//    double* dataSet;
     
 };
 
+#endif
