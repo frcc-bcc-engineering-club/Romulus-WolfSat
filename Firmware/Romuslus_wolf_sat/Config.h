@@ -12,6 +12,13 @@
          * ******HEATER*******
          */
 
+
+  #define HEATER_PIN 1
+  /*
+   * The heat signal pin
+   */
+
+      
   #define TARGET_TEMPERATURE 20
   /*
    * what the the target internal temperature in celsius

@@ -15,6 +15,3 @@ void ParticulateSensor::FillData()
   dataSet [8] = loc.NumPM10;
   dataSet [9] = loc.PartSize;
 }
-
-
-

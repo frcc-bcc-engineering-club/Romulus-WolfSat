@@ -1,6 +1,7 @@
 /*
  * written by Tyler Dow
  */
+#include <SparkFunTMP102.h>
 #include "PIDController.h"
 
 class LifeSupport{
@@ -14,7 +15,7 @@ class LifeSupport{
      */
    
   void begin
-  (
+  (TMP102 &sensor,
     int heaterPin,//The pin the heater will send the PWM signal to
     int VBatPin, // the pin the voltage divider from the battery will be hooked up to
     double P = 10,// Porpotional value to the PID loop.
@@ -65,18 +66,24 @@ class LifeSupport{
     /*
      * this target temperature in Celius to try to maintain.
      */
+     double HeaterPin;
+     /*
+      * Heater pin we will be using
+      */
      long HeaterStartTime;
      /*
       * when was the heater last turned on. Used to check if the heater
       * is having a malfunction if tempature has not hit its target.
       */
-
+      
       /*
        * FLAGS for life support.
        * Check returning functions for more information.
        */
        bool myInternalTempWarning, myInternalTempCrtical,
             myLowBatteryWarning, myHeaterMalfunction;
+
+       TMP102* myHeatSensor;
 
 
       
