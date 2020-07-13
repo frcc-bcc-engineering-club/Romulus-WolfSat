@@ -3,6 +3,7 @@
  */
 #include <SparkFunTMP102.h>
 #include "PIDController.h"
+#include "Sensor.h"
 
 class LifeSupport{
   public:
@@ -15,7 +16,7 @@ class LifeSupport{
      */
    
   void begin
-  (TMP102 &sensor,
+  (Sensor &sensor,
     int heaterPin,//The pin the heater will send the PWM signal to
     int VBatPin, // the pin the voltage divider from the battery will be hooked up to
     double P = 10,// Porpotional value to the PID loop.
@@ -83,7 +84,7 @@ class LifeSupport{
        bool myInternalTempWarning, myInternalTempCrtical,
             myLowBatteryWarning, myHeaterMalfunction;
 
-       TMP102* myHeatSensor;
+       Sensor* myHeatSensor;
 
 
       

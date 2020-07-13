@@ -19,7 +19,8 @@ double* ozoneTwoSensorSet;
 double* partiSet;
 double* airPressSet;
 
-TMP102 internalTMP102(0x48);
+//TMP102 internalTMP102(0x48);
+
 DataLog logger;
 TimeStamper tStamp;
 VOCSensor vocSensor;
@@ -38,14 +39,14 @@ void setup()
   DEBUG = true;
   logger = DataLog(5, DEBUG);
   tStamp = TimeStamper();
-  ls.begin(internalTMP102,HEATER_PIN,0);
+  //ls.begin(internalTMP102,HEATER_PIN,0);
 
   
 }
 
 void loop() 
 {
-  internalTMP102.begin();
+  //internalTMP102.begin();
   digitalWrite(LED_BUILTIN, HIGH);
   //vocFunk();
   //partiFunk();
@@ -81,4 +82,3 @@ void airFunk()
   airPressSet = airPressSensor.GetData();
   logger.WriteSet("PrsData.txt", airPressSet, airPressSensor.GetSize(), tStamp);
 }
-

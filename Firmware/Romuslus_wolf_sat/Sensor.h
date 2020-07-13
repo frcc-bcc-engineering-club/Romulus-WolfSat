@@ -10,7 +10,7 @@ class Sensor
     int GetSize();
     virtual void FillData() = 0;
   protected:
-    double*;
+    double* dataSet;
   private:
     int dataSize;
 //    double* dataSet;
