@@ -1,3 +1,4 @@
+
 #include <SD.h>
 #include "LifeSupport.h"
 #include "DataLog.h"
@@ -5,6 +6,7 @@
 #include "VOCSensor.h"
 #include "ParticulateSensor.h"
 #include "OzoneSensor.h"
+#include "AirPressure.h"
 #include <SparkFunTMP102.h>
 #include <Wire.h>
 #include "Config.h"
@@ -15,13 +17,15 @@ double* vocSensorSet;
 double* ozoneOneSensorSet;
 double* ozoneTwoSensorSet;
 double* partiSet;
+double* airPressSet;
 
-TMP102 internalTMP102;
+TMP102 internalTMP102(0x48);
 DataLog logger;
 TimeStamper tStamp;
 VOCSensor vocSensor;
 ParticulateSensor partiSensor;
 OzoneSensor o3SensorOne;
+AirPressure airPressSensor;
 
 LifeSupport ls;
 
@@ -43,8 +47,9 @@ void loop()
 {
   internalTMP102.begin();
   digitalWrite(LED_BUILTIN, HIGH);
-  vocFunk();
-  partiFunk();
+  //vocFunk();
+  //partiFunk();
+  airFunk();
   digitalWrite(LED_BUILTIN, LOW);
   delay(1000);
 }
@@ -69,3 +74,11 @@ void ozFunkOne()
   ozoneOneSensorSet = o3SensorOne.GetData();
   logger.WriteSet("O3OneData.txt", ozoneOneSensorSet, o3SensorOne.GetSize(), tStamp);
 }
+
+void airFunk()
+{
+  airPressSensor.FillData();
+  airPressSet = airPressSensor.GetData();
+  logger.WriteSet("PrsData.txt", airPressSet, airPressSensor.GetSize(), tStamp);
+}
+
