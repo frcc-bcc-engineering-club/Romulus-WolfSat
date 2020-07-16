@@ -3,7 +3,7 @@
 
 
 
-PIDControlSystem::PIDControlSystem(){
+PIDController::PIDController(){
 
 P=10;//setting poroptional
 I=0.1;//setting intergral
@@ -11,33 +11,33 @@ D=1;//setting derivitive
 
 }
 
-PIDControlSystem::PIDControlSystem(double Proportional, double Integral, double Deveritive){
+PIDController::PIDController(double Proportional, double Integral, double Deveritive){
 P=Proportional;
 I=Integral;
 D=Deveritive;
 }
 
 
-void PIDControlSystem::setProportional(double Proportional){
+void PIDController::setProportional(double Proportional){
   P=Proportional;
 }
 
-void PIDControlSystem::setIntegral(double Integral){
+void PIDController::setIntegral(double Integral){
   I = Integral;
 }
 
-void PIDControlSystem::setDerivative(double Derivative){
+void PIDController::setDerivative(double Derivative){
 D=Derivative;
   
 }
-void PIDControlSystem::setIntergralLimit(int limit){
+void PIDController::setIntergralLimit(int limit){
   intergralLimit = limit;
 }
 
 
 
 
-double PIDControlSystem::run(double current, double target){
+double PIDController::run(double current, double target){
 
   
   double porpational = target - current;

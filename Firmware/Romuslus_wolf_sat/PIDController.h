@@ -1,5 +1,8 @@
 
-class PIDControlSystem{
+#ifndef SHIFTREG_H
+#define SHIFTREG_H
+
+class PIDController{
 /*
  * this is a PID class that can be used to create stable control systems.
  * once tuned it can be used to controled flight systems, heaters, or anything
@@ -9,13 +12,13 @@ class PIDControlSystem{
 
   public:
   
-    PIDControlSystem();
+    PIDController();
     /*
       * create an empty cotroller system.
       */
 
    
-    PIDControlSystem(double Proportional, double Integral, double Deveritive);
+    PIDController(double Proportional, double Integral, double Deveritive);
     /*
       * create a controller system with it fully initalzied and setup the controller to be ready for use.
       * readPin is the analogPin that will 
@@ -61,3 +64,5 @@ class PIDControlSystem{
 
       
 };
+
+#endif
