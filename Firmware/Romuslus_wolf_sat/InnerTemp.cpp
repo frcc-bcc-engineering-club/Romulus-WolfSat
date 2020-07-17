@@ -10,6 +10,7 @@ void InnerTemp::FillData(){
 }
 
 InnerTemp::InnerTemp():Sensor(1){
+  
   tmp.begin();
   tmp.setConversionRate(3);// sensor updates at 8 hz
   tmp.setExtendedMode(0);// system should not go over 128C  

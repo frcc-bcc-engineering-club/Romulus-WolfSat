@@ -20,6 +20,7 @@ void LifeSupport::begin(Sensor &sensor, //internal sensor
       this-> HeaterPin = heaterPin;
       myHeatSensor = &sensor;
       targetCelius = target;
+      HeaterEnabled = true;
       
       
     }
@@ -30,6 +31,33 @@ void LifeSupport::begin(Sensor &sensor, //internal sensor
       double currentTemp =  myHeatSensor->GetData()[0];// get data
       double RawPIDValue = MyPID.run(currentTemp,targetCelius); // read current temp and a
       double HeaterOutput = constrain(RawPIDValue,0,255);// contrain the value so we don't overflow the value.
-      analogWrite(this-> HeaterPin,HeaterOutput);
+
+      //check if heater is enabled and we are not above 
+      if(HeaterEnabled && currentTemp<TEMPERATURE_HIGH){analogWrite(this-> HeaterPin,HeaterOutput);}
+      else{analogWrite(this-> HeaterPin,0);}
+      
+
+       //check if our tempature is going critcally high.
+      if(currentTemp>TEMPERATURE_CRICTICAL)
+      {
+        myInternalTempCrtical=true;
+        HeaterEnabled=false;
+      }
+
+
+      if(getBatteryVoltage()<LOW_BATTERY_VOLTAGE)
+        {
+          HeaterEnabled=false;
+          myLowBatteryWarning=true;
+        }
       
     }
+
+
+    double LifeSupport::getBatteryVoltage()
+    {
+      return 6.5;
+
+    }
+    
+    

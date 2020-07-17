@@ -7,6 +7,7 @@
 #include "ParticulateSensor.h"
 #include "OzoneSensor.h"
 #include "AirPressure.h"
+#include "InnerTemp.h"
 #include <SparkFunTMP102.h>
 #include <Wire.h>
 #include "Config.h"
@@ -28,6 +29,9 @@ ParticulateSensor partiSensor;
 OzoneSensor o3SensorOne;
 AirPressure airPressSensor;
 
+
+
+InnerTemp it;
 LifeSupport ls;
 
 void setup() 
@@ -39,7 +43,9 @@ void setup()
   DEBUG = true;
   logger = DataLog(5, DEBUG);
   tStamp = TimeStamper();
-  //ls.begin(internalTMP102,HEATER_PIN,0);
+  ls.begin(it,HEATER_PIN,0);
+
+//  testFunction();//DELETE LATER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   
 }
@@ -54,6 +60,10 @@ void loop()
   digitalWrite(LED_BUILTIN, LOW);
   delay(1000);
 }
+
+
+
+
 
 void vocFunk()
 {

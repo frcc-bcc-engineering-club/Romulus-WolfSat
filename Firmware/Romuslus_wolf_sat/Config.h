@@ -51,5 +51,5 @@
   #define LOW_BATTERY_VOLTAGE 6.4 
        /*
         *When does the system say the battery is low in volts.
-        *
+        *will disable heaters to preserve the abilty to record data.
         */

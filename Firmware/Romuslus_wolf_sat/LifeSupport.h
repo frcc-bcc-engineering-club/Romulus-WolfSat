@@ -31,7 +31,7 @@ class LifeSupport{
     double getBatteryVoltage();
      /*
       * return the voltage of the battery based on the voltage divider
-      * on the circuit. May or may not do anything with it.
+      * on the circuit. 
       */
 
     bool InternalTempWarning();
@@ -57,6 +57,7 @@ class LifeSupport{
       * disable or enable the heater on the craft, disable the heater 
       * can save power if we are low.
       */
+
 
   private:
     PIDController MyPID;
@@ -84,7 +85,11 @@ class LifeSupport{
        bool myInternalTempWarning, myInternalTempCrtical,
             myLowBatteryWarning, myHeaterMalfunction;
 
+       bool HeaterEnabled= true;
+
        Sensor* myHeatSensor;
+
+       
 
 
       
