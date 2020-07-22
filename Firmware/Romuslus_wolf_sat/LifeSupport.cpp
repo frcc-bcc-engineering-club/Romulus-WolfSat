@@ -16,7 +16,7 @@ void LifeSupport::begin(Sensor &sensor, //internal sensor
           
           )
     {
-      this-> MyPID = PIDController(P,I,D);
+      this-> MyPID = PIDController(P,I,D,3);
       this-> HeaterPin = heaterPin;
       myHeatSensor = &sensor;
       targetCelius = target;
