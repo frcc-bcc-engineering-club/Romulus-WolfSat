@@ -11,10 +11,11 @@ D=1;//setting derivitive
 
 }
 
-PIDController::PIDController(double Proportional, double Integral, double Deveritive){
+PIDController::PIDController(double Proportional, double Integral, double Deveritive,double IntLimit = 5){
 P=Proportional;
 I=Integral;
 D=Deveritive;
+intergralLimit=IntLimit;
 }
 
 
@@ -41,22 +42,25 @@ double PIDController::run(double current, double target){
 
   
   double porpational = target - current;
-  double intergral;
+  
   double derivative;
 
   if(abs(porpational)>intergralLimit){
     intergral=0;
   }
   else{
-    intergral+=porpational;
+    intergral+=porpational*millis()/1000;
   }
 
-  derivative = (porpational-lastP)*(lastRun-millis());
+    intergral=constrain(intergral,-25,25);
+
+  derivative = (porpational-lastP)*(lastRun-millis())/1000.0;
 
   lastP=porpational;
   
   lastRun=millis();
 
-  return porpational*P + intergral*I + derivative*D;
+  Serial.println("PID:: P: "+String(porpational)+" :I "+String(intergral*I)+" D: "+ String(derivative*D) +" OUT:" +String((porpational*P + intergral*I + derivative*D)));
+  return (porpational*P + intergral*I + derivative*D);
   
 }

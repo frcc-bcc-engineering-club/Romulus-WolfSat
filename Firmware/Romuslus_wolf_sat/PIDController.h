@@ -18,7 +18,7 @@ class PIDController{
       */
 
    
-    PIDController(double Proportional, double Integral, double Deveritive);
+    PIDController(double Proportional, double Integral, double Deveritive,double IntLimit = 5);
     /*
       * create a controller system with it fully initalzied and setup the controller to be ready for use.
       * readPin is the analogPin that will 
@@ -50,7 +50,7 @@ class PIDController{
       */
 
    private:
-   int P,I,D, intergralLimit, lastP;
+   int P,I,D, intergralLimit, lastP, intergral;
    /*
       * These are the values for the PID control system
       */
