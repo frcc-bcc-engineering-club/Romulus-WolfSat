@@ -48,6 +48,18 @@
        * *******Battery******
        */
 
+ #define IGNORE_BATTERY_VOLTAGE true
+
+  #define BATTERY_VOLTAGE_PIN A5
+  /*
+   * pin at which we messure the voltage from.
+   */
+
+  #define BATTERY_VOLTAGE_MULTIPLIER 4.8484
+  /*
+   * This is the multiplier we use when detecting the voltage on the analog pin.
+   */
+  
   #define LOW_BATTERY_VOLTAGE 6.4 
        /*
         *When does the system say the battery is low in volts.

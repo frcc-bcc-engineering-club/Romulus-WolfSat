@@ -45,7 +45,7 @@ void LifeSupport::begin(Sensor &sensor, //internal sensor
       }
 
 
-      if(getBatteryVoltage()<LOW_BATTERY_VOLTAGE)
+      if(getBatteryVoltage()<LOW_BATTERY_VOLTAGE&&!IGNORE_BATTERY_VOLTAGE)
         {
           HeaterEnabled=false;
           myLowBatteryWarning=true;
@@ -56,7 +56,11 @@ void LifeSupport::begin(Sensor &sensor, //internal sensor
 
     double LifeSupport::getBatteryVoltage()
     {
-      return 6.5;
+      double voltageReading = analogRead(BATTERY_VOLTAGE_PIN)/1023.0;// get the decimal percent value of voltage
+      voltageReading*= 3.3;//multiply by 3.3v as we are running on a 3.3v system
+      voltageReading*=BATTERY_VOLTAGE_MULTIPLIER;// multiply by multipler to compensate for voltage divider.
+      
+      return voltageReading;
 
     }
     
