@@ -20,6 +20,7 @@ double* ozoneSensorSet;
 double* partiSet;
 double* airPressSet;
 double* tempSet;
+double* lsSet;
 
 //TMP102 internalTMP102(0x48);
 
@@ -81,14 +82,23 @@ void loop()
 
   face.SetState(4);
   ls.run();
-  
+  Serial.print("LIF : ");
+  lifFunk();
+
+  face.SetState(-1);
   digitalWrite(LED_BUILTIN, LOW);
   delay(1000);
+  //Serial.println(analogRead(A14));
 }
 
 
 
-
+void lifFunk()
+{
+  ls.FillData();
+  lsSet = ls.GetData();
+  logger.WriteSet("LIFData.txt", lsSet, ls.GetSize(), tStamp);
+}
 
 void vocFunk()
 {

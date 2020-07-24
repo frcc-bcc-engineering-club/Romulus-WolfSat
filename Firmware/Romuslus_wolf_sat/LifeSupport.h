@@ -8,6 +8,7 @@
 class LifeSupport : public Sensor{
   public:
 
+  void FillData() override;
 
 
   LifeSupport();
@@ -94,9 +95,6 @@ class LifeSupport : public Sensor{
        bool HeaterEnabled= true;
 
        Sensor* myHeatSensor;
-
-       void FillData() override;
-
 
       
     

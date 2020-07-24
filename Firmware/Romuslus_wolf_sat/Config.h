@@ -50,12 +50,12 @@
 
  #define IGNORE_BATTERY_VOLTAGE true
 
-  #define BATTERY_VOLTAGE_PIN A5
+  #define BATTERY_VOLTAGE_PIN A14
   /*
    * pin at which we messure the voltage from.
    */
 
-  #define BATTERY_VOLTAGE_MULTIPLIER 4.8484
+  #define BATTERY_VOLTAGE_MULTIPLIER 3.25
   /*
    * This is the multiplier we use when detecting the voltage on the analog pin.
    */
