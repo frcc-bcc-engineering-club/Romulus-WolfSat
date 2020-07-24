@@ -61,6 +61,13 @@ double PIDController::run(double current, double target){
   lastRun=millis();
 
   Serial.println("PID:: P: "+String(porpational)+" :I "+String(intergral*I)+" D: "+ String(derivative*D) +" OUT:" +String((porpational*P + intergral*I + derivative*D)));
-  return (porpational*P + intergral*I + derivative*D);
+  lastRun = (porpational*P + intergral*I + derivative*D);
+  
+  return lastRun;
   
 }
+
+
+double PIDController::getLastRun(){
+    return lastRun;
+   }

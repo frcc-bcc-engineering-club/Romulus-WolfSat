@@ -5,8 +5,14 @@
 #include "PIDController.h"
 #include "Sensor.h"
 
-class LifeSupport{
+class LifeSupport : public Sensor{
   public:
+
+
+
+  LifeSupport();
+
+  
   void run();
     /*
      * run will be put in the main loop to control the lifeSupport systems.
@@ -89,7 +95,7 @@ class LifeSupport{
 
        Sensor* myHeatSensor;
 
-       
+       void FillData() override;
 
 
       

@@ -6,8 +6,15 @@
 
 
 
+LifeSupport::LifeSupport() : Sensor(5){
+
+
+  
+ }
+
+
 void LifeSupport::begin(Sensor &sensor, //internal sensor
-  int heaterPin,//The pin the heater will send the PWM signal to
+          int heaterPin,//The pin the heater will send the PWM signal to
           int VBatPin, // the pin the voltage divider will be hooked up to
           double P = 10,// Porpotional value to the PID loop.
           double I = 0.1,//Intergral of the PID loop.
@@ -62,6 +69,17 @@ void LifeSupport::begin(Sensor &sensor, //internal sensor
       
       return voltageReading;
 
+    }
+
+    void LifeSupport::FillData(){
+         //Battery Voltage, Heater PWM output, HeaterEnabled, myLowBatteryWarning, myInternalTempCrtical
+
+         dataSet[0] = getBatteryVoltage();
+         dataSet[1] = MyPID.getLastRun();
+         dataSet[2] = HeaterEnabled;
+         dataSet[3] = myLowBatteryWarning;
+         dataSet[4] = myInternalTempCrtical;
+         
     }
     
     

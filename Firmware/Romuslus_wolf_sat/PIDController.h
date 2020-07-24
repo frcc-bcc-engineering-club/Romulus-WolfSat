@@ -48,15 +48,22 @@ class PIDController{
    /*
       *The Run function will run a single cycle of the PID and return the output from the  
       */
+   double getLastRun();
+   /*
+    * return what output of last run was
+    */
 
    private:
    int P,I,D, intergralLimit, lastP, intergral;
    /*
       * These are the values for the PID control system
       */
-
+  
     
-
+    double lastOutput  = 0;
+    /*
+     * The last output of the PID loop
+     */
    long lastRun;
    /*
       * The last run of the PID control system
