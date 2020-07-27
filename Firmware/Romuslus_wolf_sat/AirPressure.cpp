@@ -1,5 +1,5 @@
 #include "AirPressure.h"
-const double BASEALTITUDE = 1539.85; // berthoud. 1476.76 for Eaton. In meters.
+const double BASEALTITUDE = 1539.85; // berthoud. 1641.35 for Limon. 1586.18 for Deer Trail
 
 void AirPressure::FillData()
 {
