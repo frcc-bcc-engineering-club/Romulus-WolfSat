@@ -1,4 +1,3 @@
-
 #include <SD.h>
 #include "LifeSupport.h"
 #include "DataLog.h"
@@ -22,8 +21,6 @@ double* airPressSet;
 double* tempSet;
 double* lsSet;
 
-//TMP102 internalTMP102(0x48);
-
 DataLog logger;
 TimeStamper tStamp;
 VOCSensor vocSensor;
@@ -32,9 +29,6 @@ OzoneSensor o3SensorOne;
 AirPressure airPressSensor;
 InnerTemp innerTemp;
 Interface face;
-
-
-//InnerTemp it;
 LifeSupport ls;
 
 void setup() 
