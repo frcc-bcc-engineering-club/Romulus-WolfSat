@@ -22,7 +22,7 @@
    */
 
       
-  #define TARGET_TEMPERATURE 35
+  #define TARGET_TEMPERATURE 15
   /*
    * what the the target internal temperature in celsius
    */

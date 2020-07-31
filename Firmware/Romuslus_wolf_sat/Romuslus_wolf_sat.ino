@@ -34,8 +34,6 @@ LifeSupport ls;
 
 void setup() 
 {
-  digitalWrite(LED_BUILTIN, LOW);
-  face.SetError(true);
   Serial.begin(115200);// For system Diagnostics
   Serial.println("Romulus / WolfSat II\nA project by Vivia Van De Mark, DJ Richardson, Tyler Dow, and James Craft\nIf you are not debugging(" + String(DEBUG) + ") then this will be the only text on Serial.");
   Wire.begin(); 
@@ -53,7 +51,6 @@ void setup()
   }
   if (DEBUG)
     Serial.println("Starting Mission");
-  face.SetError(false);
 }
 
 void loop() 
