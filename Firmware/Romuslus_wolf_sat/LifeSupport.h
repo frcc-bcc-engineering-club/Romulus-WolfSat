@@ -1,6 +1,9 @@
 /*
  * written by Tyler Dow
  */
+
+#ifndef LIFESUPPORT_H
+#define LIFESUPPORT_H
 #include <SparkFunTMP102.h>
 #include "PIDController.h"
 #include "Sensor.h"
@@ -99,3 +102,5 @@ class LifeSupport : public Sensor{
       
     
 };
+
+#endif

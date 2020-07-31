@@ -1,5 +1,5 @@
 #include "AirPressure.h"
-const double BASEALTITUDE = 1518.21; // Tinkermill. 1641.35 for Limon. 1586.18 for Deer Trail
+const double BASEALTITUDE = 1586.18; // 1518.21 Tinkermill. 1641.35 for Limon. 1586.18 for Deer Trail
 
 void AirPressure::FillData()
 {

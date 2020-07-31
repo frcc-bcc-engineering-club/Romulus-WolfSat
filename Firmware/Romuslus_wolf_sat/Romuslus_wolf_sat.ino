@@ -12,6 +12,8 @@
 #include "Config.h"
 #include "Interface.h"
 
+Interface face;
+
 bool DEBUG = false;
 double testSet[] = {1.0, 1.137, 3.14159};
 double* vocSensorSet;
@@ -22,25 +24,25 @@ double* tempSet;
 double* lsSet;
 
 DataLog logger;
-TimeStamper tStamp;
-VOCSensor vocSensor;
-ParticulateSensor partiSensor;
+TimeStamper tStamp = TimeStamper(DEBUG);
+VOCSensor vocSensor = VOCSensor(DEBUG);
+ParticulateSensor partiSensor = ParticulateSensor(DEBUG);
 OzoneSensor o3SensorOne;
 AirPressure airPressSensor;
 InnerTemp innerTemp;
-Interface face;
 LifeSupport ls;
 
 void setup() 
 {
+  digitalWrite(LED_BUILTIN, LOW);
   face.SetError(true);
   Serial.begin(115200);// For system Diagnostics
+  Serial.println("Romulus / WolfSat II\nA project by Vivia Van De Mark, DJ Richardson, Tyler Dow, and James Craft\nIf you are not debugging(" + String(DEBUG) + ") then this will be the only text on Serial.");
   Wire.begin(); 
-  Serial.println("Setting up Romulus");
-  pinMode(LED_BUILTIN, OUTPUT);
-  DEBUG = true;
+  if(DEBUG)
+    Serial.println("Setting up Romulus");
   logger = DataLog(5, DEBUG);
-  tStamp = TimeStamper();
+  tStamp = TimeStamper(DEBUG); // May be unnecessary here since it is done in the main space.
   ls.begin(innerTemp,HEATER_PIN,0,25,1,0.05,TARGET_TEMPERATURE);
   while(face.CheckButton())
   {
@@ -49,34 +51,41 @@ void setup()
     face.SetReady(false);
     delay(60);
   }
-  Serial.println("Starting Mission");
+  if (DEBUG)
+    Serial.println("Starting Mission");
   face.SetError(false);
 }
 
 void loop() 
 {
+  face.SetError(checkErrors());
 
   //internalTMP102.begin();
   digitalWrite(LED_BUILTIN, HIGH);
   face.SetState(0);
-  Serial.print("VOC : ");
+  if (DEBUG)
+    Serial.print("VOC : ");
   vocFunk();
   
   face.SetState(1);
-  Serial.print("SPS : ");
+  if (DEBUG)
+    Serial.print("SPS : ");
   partiFunk();
 
   face.SetState(3);
-  Serial.print("PRS : ");
+  if (DEBUG)
+    Serial.print("PRS : ");
   airFunk();
 
   face.SetState(2);
-  Serial.print("TMP : ");
+  if (DEBUG)
+    Serial.print("TMP : ");
   tempFunk();
 
   face.SetState(4);
   ls.run();
-  Serial.print("LIF : ");
+  if (DEBUG)
+    Serial.print("LIF : ");
   lifFunk();
 
   face.SetState(-1);
@@ -127,5 +136,15 @@ void tempFunk()
   innerTemp.FillData();
   tempSet = innerTemp.GetData();
   logger.WriteSet("TMPData.txt", tempSet, innerTemp.GetSize(), tStamp);
+}
+
+bool checkErrors()
+{
+  bool toRet = false;
+  if (ls.InternalTempWarning() || ls.InternalTempCrtical() || ls.LowBatteryWarning() || ls.HeaterMalfunction() || logger.GetFlag())
+    toRet = true;
+   else
+    toRet = false;
+   return  toRet;
 }
 

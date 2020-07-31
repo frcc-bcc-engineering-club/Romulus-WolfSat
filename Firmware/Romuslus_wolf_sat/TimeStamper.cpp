@@ -1,14 +1,15 @@
 #include"TimeStamper.h"
 
-TimeStamper::TimeStamper()
+TimeStamper::TimeStamper(bool in_debug)
 {
+  debug = in_debug;
   setSyncProvider(getTeensy3Time);
   //  while(!Serial);
   //  delay(100);
-  if (timeStatus() != timeSet)
+  if ((timeStatus() != timeSet) && debug)
     Serial.println("RTC could not sync!");
-  else
-    Serial.println("RTC has set the system time.");
+  else if (debug)
+    Serial.println("RTC has set the system time." + String(debug) + " " + String(in_debug));
 }
 
 String TimeStamper::Get_Stamp()

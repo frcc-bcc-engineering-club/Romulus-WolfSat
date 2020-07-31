@@ -4,12 +4,14 @@
 DataLog::DataLog()
 {
   errorLim = -1;
+  errorFlag = false;
 }
 
 
 DataLog::DataLog(int in_errorLim, bool in_debugging)
 {
   errorLim = in_errorLim;
+  errorFlag = false;
   debugging = in_debugging;
   InitializeSD();
 }
@@ -85,6 +87,7 @@ File DataLog::OpenFile(char in_fileName[])
     int count = 0;
     while((!toReturn) && (count < errorLim))
     {
+      errorFlag = true;
       if(debugging)
       {
         Serial.print("SD.open(...) failed to return it's file target : ");
@@ -99,4 +102,8 @@ File DataLog::OpenFile(char in_fileName[])
   return toReturn;
 }
 
+bool DataLog::GetFlag()
+{
+  return errorFlag;
+}
 

@@ -8,14 +8,15 @@ PIDController::PIDController(){
 P=10;//setting poroptional
 I=0.1;//setting intergral
 D=1;//setting derivitive
-
+debug = false;
 }
 
-PIDController::PIDController(double Proportional, double Integral, double Deveritive,double IntLimit = 5){
+PIDController::PIDController(double Proportional, double Integral, double Deveritive,double IntLimit = 5, bool in_debug){
 P=Proportional;
 I=Integral;
 D=Deveritive;
 intergralLimit=IntLimit;
+debug = in_debug;
 }
 
 
@@ -59,8 +60,10 @@ double PIDController::run(double current, double target){
   lastP=porpational;
   
   lastRun=millis();
-
-  Serial.println("PID:: P: "+String(porpational)+" :I "+String(intergral*I)+" D: "+ String(derivative*D) +" OUT:" +String((porpational*P + intergral*I + derivative*D)));
+  
+  if(debug)
+    Serial.println("PID:: P: "+String(porpational)+" :I "+String(intergral*I)+" D: "+ String(derivative*D) +" OUT:" +String((porpational*P + intergral*I + derivative*D)));
+    
   lastRun = (porpational*P + intergral*I + derivative*D);
   
   return lastRun;

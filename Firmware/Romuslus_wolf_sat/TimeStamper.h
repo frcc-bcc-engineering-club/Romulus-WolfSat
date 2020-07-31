@@ -7,13 +7,14 @@
 class TimeStamper
 {
   public:
-  TimeStamper();
+  TimeStamper(bool);
   String Get_Stamp();
 
   private:
   static time_t getTeensy3Time();
   unsigned long processSyncMessage();
   String stringify();
+  bool debug;
   
 };
 

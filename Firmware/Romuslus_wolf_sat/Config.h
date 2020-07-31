@@ -1,3 +1,6 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
 /*
  * This is where you can set values for the system functions
  * Added in by Tyler Dow
@@ -65,3 +68,4 @@
         *When does the system say the battery is low in volts.
         *will disable heaters to preserve the abilty to record data.
         */
+#endif

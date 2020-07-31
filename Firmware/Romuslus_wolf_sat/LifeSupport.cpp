@@ -81,5 +81,23 @@ void LifeSupport::begin(Sensor &sensor, //internal sensor
          dataSet[4] = myInternalTempCrtical;
          
     }
-    
+
+    bool LifeSupport::InternalTempWarning()
+    {
+      return myInternalTempWarning;
+    }
+
+    bool LifeSupport::InternalTempCrtical()
+    {
+      return myInternalTempCrtical;
+    }
+
+    bool LifeSupport::LowBatteryWarning()
+    {
+      return myLowBatteryWarning;
+    }
+    bool LifeSupport::HeaterMalfunction()
+    {
+      return myHeaterMalfunction;
+    }
     

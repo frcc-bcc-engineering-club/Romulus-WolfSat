@@ -11,10 +11,10 @@ class VOCSensor : public Sensor
 {
   CCS811 ccs = CCS811(CCS811_ADDR);
   public:
-    VOCSensor() : Sensor(2) 
+    VOCSensor(bool in_debug) : Sensor(2) 
     {
       Wire.begin();
-      if(ccs.begin() == false)
+      if((ccs.begin() == false ) && (in_debug))
       {
         Serial.print("CCS811 error. Please check wiring.");
       }

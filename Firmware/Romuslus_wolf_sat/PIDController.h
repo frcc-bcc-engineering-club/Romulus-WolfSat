@@ -18,7 +18,7 @@ class PIDController{
       */
 
    
-    PIDController(double Proportional, double Integral, double Deveritive,double IntLimit = 5);
+    PIDController(double Proportional, double Integral, double Deveritive,double IntLimit = 5, bool in_debug = false);
     /*
       * create a controller system with it fully initalzied and setup the controller to be ready for use.
       * readPin is the analogPin that will 
@@ -68,6 +68,8 @@ class PIDController{
    /*
       * The last run of the PID control system
       */
+
+    bool debug;
 
       
 };

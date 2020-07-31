@@ -9,6 +9,8 @@ Interface::Interface()
   pinMode(LED_MULTIG, OUTPUT);
   pinMode(LED_MULTIB, OUTPUT);
   pinMode(BUTTON, INPUT_PULLUP);
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, HIGH);
 }
 
 bool Interface::CheckButton()
